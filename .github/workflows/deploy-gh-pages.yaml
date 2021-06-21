@@ -3,10 +3,19 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
+  pull_request:
 
 jobs:
   deploy-to-pages:
     runs-on: ubuntu-latest
+
+    # If on the python/peps repo, only deploy on pushes to `master`. Otherwise, build
+    # and deploy on pushes to master or pull requests.
+    if: >
+      (
+        (github.repository == 'python/peps' && github.ref == 'refs/heads/master')
+        || (github.repository != 'python/peps')
+      )
 
     steps:
       - name: 🛎️ Checkout
