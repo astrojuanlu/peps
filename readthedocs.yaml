@@ -1,0 +1,13 @@
+# Required
+version: 2
+
+python:
+  version: 3.9
+  install:
+    - requirements: requirements.txt
+
+search:
+  ignore: ['*']
+
+formats:
+  - epub
